@@ -12,29 +12,19 @@ const devServer = (isDev) => !isDev ? {} : {
 
 module.exports = ({develop}) => ({
   mode: develop ? 'development' : 'production',
-  entry: {
-    main: './src/index.js',
-    second: './src/index2.js'
-    },
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js',
+    filename: 'bundle.js',
     clean: true,
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      chunks: ['main'],
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index2.html',
-      filename: 'index2.html',
-      chunks: ['second'],
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
-    }),
+      new HtmlWebpackPlugin({
+          template: './src/index.html'
+      }),
+      new MiniCssExtractPlugin({
+          filename: './styles/main.css'
+      })
   ],
   module: {
       rules: [
