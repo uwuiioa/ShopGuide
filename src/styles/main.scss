@@ -87,6 +87,21 @@
     color: $color;
 }
 
+$tablet-width: 390px;
+$desktop-width: 1600px;
+
+@mixin tablet {
+    @media (max-width: #{$desktop-width - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
 $white: #FFFFFF;
 $black: #000000;
 $blue: #29D3D1;
@@ -97,6 +112,7 @@ $light-orange: #F48078;
 
 body {
     font-family: 'FuturaDemic', sans-serif;
+    overflow-x: hidden;
 }
 
 .banner {
@@ -104,11 +120,21 @@ body {
   width: 100%; 
   height: 810px;
 
+  @include tablet {
+    height: 709px;
+    overflow: hidden;
+  }
+
     img {
         width: 100%; 
         height: 100%; 
         object-fit: cover; 
         display: block;
+        
+        @include tablet {
+            object-fit: none;
+            object-position: bottom;
+        }
     }
 }
 
@@ -121,6 +147,10 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 1285px;
+
+    @include tablet {
+        display: none;
+    }
 
     &__social {
         width: 305px;
@@ -168,6 +198,12 @@ body {
     left: 50%;
     transform: translateX(-50%);
 
+    @include tablet {
+        width: 390px;
+        height: 314px;
+        top: 191px;
+    }
+
     &__container {
         display: flex;
         width: 517px;
@@ -177,13 +213,30 @@ body {
         left: 0;
         flex-direction: column;
 
+        @include tablet {
+            width: 100%;
+            height: 314px;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         &__link {
             display: flex;
             width: 244px;
             height: 51.75px;
             position: absolute;
             top: 0;
-            left: 273px;        
+            left: 273px;
+            
+            @include tablet {
+                width: 240px;
+                height: 52.75px;
+                left: 50%;
+                transform: translateX(-19%);
+                overflow: hidden;
+            }        
         }
 
         &__text {
@@ -213,6 +266,14 @@ body {
     top: 36.75px;
     left: 0;
 
+    @include tablet {
+        width: 100%;
+        height: 276px;
+        align-items: center;
+        text-align: center;
+        top: 34px;
+    }
+
     &__shopguide {
         display: flex;
         width: 485px;
@@ -220,7 +281,11 @@ body {
         position: absolute;
         top: 0.13px;
         left: 0;
-
+        
+        @include tablet {
+            width: 100%;
+        }
+        
         &__name {
             display: flex;
             width: 485px;
@@ -228,7 +293,13 @@ body {
             position: absolute;
             top: 20px;
             left: 0;
-            justify-content: center;        
+            justify-content: center;
+            
+            @include tablet {
+                width: 351px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         &__download {
@@ -238,6 +309,12 @@ body {
             position: absolute;
             top: 93px;
             left: 0;
+
+            @include tablet {
+                left: 50%;
+                transform: translateX(-50%);
+                top: 89px;
+            }
         }
     }
 
@@ -252,6 +329,14 @@ body {
         left: 0;
         padding: 0;
         gap: 20px;
+
+        @include tablet {
+            flex-direction: column;
+            width: 224.5px;
+            height: 148px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
 
         &__link {
             color: #FFFFFF;
@@ -271,6 +356,10 @@ body {
     left: 64.7%;
     overflow: hidden;
 
+    @include tablet {
+        display: none;
+    }
+
     img {
         width: 412px;
         height: 698px;
@@ -289,6 +378,10 @@ body {
     transform: translateX(-50%);
     background-color: #29D3D1;
     box-shadow: 1px 4px 24px rgba(0, 0, 0, 0.35);
+    
+    @include tablet {
+        top: 684px;
+    }
 
     img {
         width: 27px;
@@ -318,6 +411,13 @@ body {
     transform: translateX(-50%);
     margin: 0;
     padding: 0;
+
+    @include tablet {
+        width: 300px;
+        height: 977px;
+        top: 815px;
+        flex-direction: column;
+    }
 
     &__section1 {
         @include section;
@@ -430,7 +530,6 @@ body {
             }
         }  
     }
-
 }
 
 .info-container {
@@ -439,6 +538,10 @@ body {
     position: absolute;
     top: 1256px;
     left: 0;
+
+    @include tablet {
+        display: none;
+    }
 
     &__background {
         width: 100%;
@@ -550,6 +653,13 @@ body {
     top: 1911px;
     left: 0;
 
+    @include tablet {
+        width: 350px;
+        top: 1872px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
     &__background {
         width: 100%;
         height: 406px;
@@ -557,12 +667,20 @@ body {
         top: 165px;
         left: 0;
         background-color: #EDECEC;
+
+        @include tablet {
+            display: none;
+        }
     }
 
     &__phone3 {
         position: absolute;
         top: 0;
         left: 1034px;
+
+        @include tablet {
+            display: none;
+        }
 
         img {
             width: 100%;
@@ -575,6 +693,10 @@ body {
         position: absolute;
         top: 22px;
         left: 832px;
+
+        @include tablet {
+            display: none;
+        }
 
         img {
             width: 100%;
@@ -593,6 +715,15 @@ body {
     gap: 30px;
     flex-direction: column;
 
+    @include tablet {
+        width: 350px;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        align-items: center;
+        text-align: center;
+    }
+
     &__header {
         width: 251px;
         @include font-bold(32px, #000000);
@@ -604,6 +735,11 @@ body {
         font-family: 'FuturaBookC';
         font-size: 24px;
         line-height: 30px;
+
+        @include tablet {
+            width: 350px;
+            height: 252px;
+        }
     }
 }
 
@@ -615,6 +751,10 @@ body {
     transform: translateX(-50%);
     @include font-bold(32px, #EB645A);
     text-align: center;
+
+    @include tablet {
+        top: 2273px;;
+    }
 }
 
 .partners-background {
@@ -623,41 +763,101 @@ body {
     position: absolute;
     top: 2617px;
     left: 0;
-    background-color: #EB645A;    
+    background-color: #EB645A;
+    
+    @include tablet {
+        top: 2372px;
+        overflow: hidden;
+    }
 }
 
 .logo-container {
-    width: 1290px;
-    height: 92px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     align-items: center;
-    display: flex;
-    gap: 20px;
     padding: 0;
     margin: 0;
 
-    &__logo-component1, &__logo-component2 {
-        width: 40px;
+    @include desktop {
+        width: 1290px;
+        height: 92px;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 20px; 
+    }
+    
+    @include tablet {
+        width: 1170px;
+        height: 92px;
+    }
 
-        &__ellipse {
+    @include desktop {
+        &__logo-component1, &__logo-component2 {
             width: 40px;
-            height: 40px;
-            background-color: #ED6B62;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
 
-            &__vector {
-                width: 10px;
-                height: 17px;
+            &__ellipse {
+                width: 40px;
+                height: 40px;
+                background-color: #ED6B62;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &__vector {
+                    width: 10px;
+                    height: 17px;
+                }
             }
+        }
+    }
+
+    @include tablet {
+        &__logo-component1, &__logo-component2 {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+
+            &__ellipse {
+                width: 40px;
+                height: 40px;
+                background-color: #ED6B62;
+                border-radius: 50%;
+                
+                &__vector {
+                    width: 8px;
+                    height: 15px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        display: block;            
+                    }
+                }
+            }
+        }
+        
+        &__logo-component1 {
+            left: 36%;
+        }
+
+        &__logo-component2 {
+            left: 64%;
         }
     }
 
@@ -670,6 +870,7 @@ body {
         text-align: center;
         padding: 0;
         margin: 0;
+        z-index: 1;
 
         &__prada, &__nike, &__cym, &__gum, &__zara, &__carlo {
             opacity: 0.2;
@@ -704,7 +905,11 @@ body {
         &__cursor {
             position: absolute;
             top: 75px;
-            left: 667px;        
+            left: 667px;
+            
+            @include tablet {
+                left: 607px;
+            }
         }
 
         &__gum {
@@ -734,25 +939,50 @@ body {
     display: flex; 
     text-align: center;
 
-    &__text1 {
-        width: 243px;
-        height: 30px;
-        position: absolute;
-        top: 0;
-        left: 99.5px;
-        font-family: 'FuturaBookC';
-        font-size: 24px;       
+    @include tablet {
+        width: 309px;
+        top: 2605px;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
     }
 
-    &__text2 {
-        width: 442px;
-        height: 30px;
-        position: absolute;
-        top: 30px;
-        left: 0;
-        font-family: 'FuturaBookC';
-        font-size: 24px;
-        text-align: left;
+    @include desktop {
+        &__text1 {
+            width: 243px;
+            height: 30px;
+            position: absolute;
+            top: 0;
+            left: 99.5px;
+            font-family: 'FuturaBookC';
+            font-size: 24px;       
+        }
+
+        &__text2 {
+            width: 442px;
+            height: 30px;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            font-family: 'FuturaBookC';
+            font-size: 24px;
+            text-align: left;
+        }
+    }
+
+    @include tablet {
+        &__text1 {
+            width: 242px;
+            font-family: 'FuturaBookC';
+            font-size: 24px;
+            white-space: nowrap;       
+        }
+
+        &__text2 {
+            width: 309px;
+            font-family: 'FuturaBookC';
+            font-size: 24px;
+        }
     }
 }
 
@@ -773,6 +1003,10 @@ body {
     cursor: pointer;
     text-transform: uppercase;
     flex-shrink: 0;
+
+    @include tablet {
+        top: 2741px;
+    }
 }
 
 .footer-background {
@@ -782,84 +1016,91 @@ body {
     top: 3076px;
     left: 0;
 
+    @include tablet {
+        height: 263px;
+        top: 2841px;
+    }
+
     img {
         width: 100%; 
-        height: 100%; 
+        height: 100%;
+        display: block; 
         object-fit: cover; 
-        display: block;        
+        object-position: 50% 82%;
     }
 }
 
-.footer {
-    width: 1290px;
-    height: 44px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    &__footer-text {
-        width: 159px;
-        height: 20px;
+@include desktop {
+    .footer {
+        width: 1290px;
+        height: 44px;
         position: absolute;
-        top: 0;
-        left: 0;
+        top: 3123px;
+        left: 155px;
 
-        p {
-            width: 146px;
-            height: 13px;
-            line-height: 13px;
-            text-transform: uppercase;
-            @include font-regular(15px);
-            color: #F6F6F6;
-            margin: 0;
-            white-space: nowrap;
-        }   
-    }
+        &__footer-text {
+            width: 159px;
+            height: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
 
-    &__footer-block {
-        width: 461px;
-        height: 16px;
-        position: absolute;
-        top: 70%;
-        left: 0;
-        display: flex;
-        gap: 40px;
-        text-transform: uppercase;
-        
-        &__text1 {
-            width: 249px;
-            height: 16px;
-            @include font-regular(12.2px);
-            margin: 0;
-            white-space: nowrap;
-
-            a {
-                color: #B5B5B5;
-                text-decoration: underline;
-            }
+            p {
+                width: 146px;
+                height: 13px;
+                line-height: 13px;
+                text-transform: uppercase;
+                @include font-regular(15px);
+                color: #F6F6F6;
+                margin: 0;
+                white-space: nowrap;
+            }   
         }
 
-        &__text2 {
-            width: 172px;
+        &__footer-block {
+            width: 461px;
             height: 16px;
-            @include font-regular(12.2px);
-            margin: 0;
-            white-space: nowrap;
+            position: absolute;
+            top: 70%;
+            left: 0;
+            display: flex;
+            gap: 40px;
+            text-transform: uppercase;
+            
+            &__text1 {
+                width: 249px;
+                height: 16px;
+                @include font-regular(12.2px);
+                margin: 0;
+                white-space: nowrap;
 
-            a {
-                color: #B5B5B5;
-                text-decoration: underline;    
-            }        
-        } 
+                a {
+                    color: #B5B5B5;
+                    text-decoration: underline;
+                }
+            }
+
+            &__text2 {
+                width: 172px;
+                height: 16px;
+                @include font-regular(12.2px);
+                margin: 0;
+                white-space: nowrap;
+
+                a {
+                    color: #B5B5B5;
+                    text-decoration: underline;    
+                }        
+            } 
+        }
     }
 
-    &__footer-btn {
+    .footer-btn {
         width: 234px;
         height: 40px;
         position: absolute;
-        top: 4%;
-        left: 81.8%;
+        top: 3123px;
+        left: 1211px;
         padding: 10px 20px; 
         border-radius: 5px; 
         border: 2px solid $white; 
@@ -880,6 +1121,108 @@ body {
             line-height: 20px;
             color: $white;  
             @include font-regular(15px);
+            text-transform: uppercase;
+            text-align: left;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+        }  
+    }
+}
+
+@include tablet {
+    .footer {
+        width: 249px;
+        position: absolute;
+        top: 2961px;
+        left: 50%;
+        transform: translate(-50%);
+        display: flex;
+        gap: 30px;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+
+        &__footer-text {
+            width: 146px;
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            p {
+                width: 146px;
+                font-family: "Montserrat", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                font-style: normal;
+                font-size: 15px;
+                color: #F6F6F6;
+                margin: 0;
+            }   
+        }
+
+        &__footer-block {
+            width: 249px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+            align-items: center;
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            &__text1 {
+                @include font-regular(12.2px);
+                width: 249px;
+
+                a {
+                    color: #B5B5B5;
+                    text-decoration: underline;
+                }
+            }
+
+            &__text2 {
+                @include font-regular(12.2px);
+                width: 172px;
+
+                a {
+                    color: #B5B5B5;
+                    text-decoration: underline;    
+                }        
+            } 
+        }
+    }
+
+    .footer-btn {
+        width: 234px;
+        height: 40px;
+        position: absolute;
+        top: 2881px;
+        left: 50%;
+        transform: translate(-50%);
+        padding: 10px 20px; 
+        border-radius: 5px; 
+        border: 2px solid $white; 
+        background-color: transparent;  
+        cursor: pointer;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+
+        img {
+            width: 22px;
+            height: 20px;
+        }
+
+        p {
+            width: 162px;
+            height: 20px;
+            line-height: 20px;
+            color: $white;  
+            font-family: "Montserrat", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 15px;
             text-transform: uppercase;
             text-align: left;
             margin: 0;
